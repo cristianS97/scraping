@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup # pip install beautifulsoup4
 import time
 import random
 from win10toast import ToastNotifier # pip install win10toast
+import json
 
 # URL de consulta
 url = 'https://jkanime.net/'
@@ -12,8 +13,15 @@ headers = {
     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0'
 }
 
-# Nombre del anime a buscar
-nombre = "shingeki"
+# Nombres de los animes junto al día de consulta
+dia = time.strftime('%A').lower()
+
+# Lectura del fichero de configuración
+with open('conf/anime_alerta/animes.json') as file:
+    animes = json.load(file)
+
+# Animes a consultar
+nombres = animes[dia]
 
 # Objeto para interactuar con las notificaciones de windows
 toaster = ToastNotifier()
