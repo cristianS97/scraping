@@ -1,26 +1,34 @@
 {
-  "monday": [],
-  "tuesday": [
-    "TENSEI SHITARA SLIME DATTA KEN 2ND SEASON"
+  "monday": [
+    "Koi to Yobu ni wa Kimochi Warui",
+    "Edens Zero",
+    "Seven Knights Revolution: Eiyuu no Keishousha"
   ],
+  "tuesday": [],
   "wednesday": [
-    "NANATSU NO TAIZAI: FUNDO NO SHINPAN",
-    "RE:ZERO KARA HAJIMERU ISEKAI SEIKATSU 2ND SEASON PART 2",
-    "KAIFUKU JUTSUSHI NO YARINAOSHI"
+    "Nanatsu no Taizai: Fundo no Shinpan",
+    "Kyuukyoku Shinka shita Full Dive RPG ga Genjitsu yori mo Kusoge Dattara",
+    "Jouran: The Princess of Snow and Blood",
+    "Cardfight!! Vanguard: overDress"
   ],
   "thursday": [
-    "DR. STONE: STONE WARS",
-    "YAKUSOKU NO NEVERLAND 2ND SEASON",
-    "5-TOUBUN NO HANAYOME ∬"
+    "Godzilla: S.P",
+    "Shaman King (2021)"
   ],
   "friday": [
-    "KUMO DESU GA, NANI KA?",
-    "JUJUTSU KAISEN (TV)"
+    "Kumo Desu ga, Nani ka?",
+    "SSSS.Dynazenon"
   ],
   "saturday": [
-    "HORIMIYA"
+    "Boku no Hero Academia 5th Season",
+    "Shakunetsu Kabaddi",
+    "Mashiro no Oto",
+    "Vivy: Fluorite Eye's Song"
   ],
   "sunday": [
-    "SHINGEKI NO KYOJIN: THE FINAL SEASON"
+    "Sayonara Watashi no Cramer",
+    "Dragon, Ie wo Kau.",
+    "Tokyo Revengers",
+    "Yuukoku no Moriarty"
   ]
 }
