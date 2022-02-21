@@ -4,6 +4,10 @@ import time
 import random
 from win10toast import ToastNotifier # pip install win10toast
 import json
+from pathlib import Path
+
+ruta = Path(__file__).resolve().parent
+print(ruta.joinpath('conf').joinpath('anime_alerta').joinpath('animes.json'))
 
 # Función para scrapear jkanime
 def scrap_jk(anime_web):
@@ -16,6 +20,13 @@ def scrap_jk(anime_web):
 def scrap_flv(anime_web):
     titulo = anime_web.find('strong').text
     episodio = anime_web.find('span', class_="Capi").text
+
+    return titulo, episodio
+
+# Función para scrapear monoschinos2
+def scrap_monos(anime_web):
+    titulo = anime_web.find('p', class_='animetitles').text
+    episodio = anime_web.find('h5').text
 
     return titulo, episodio
 
@@ -39,7 +50,8 @@ if __name__ == '__main__':
     # URL de consulta
     urls = [
         'https://jkanime.net/',
-        'https://www3.animeflv.net/'
+        'https://www3.animeflv.net/',
+        'https://monoschinos2.com/'
     ]
 
     # User-agent tor
@@ -51,7 +63,7 @@ if __name__ == '__main__':
     dia = time.strftime('%A').lower()
 
     # Lectura del fichero de configuración
-    with open('conf/anime_alerta/animes.json') as file:
+    with open(ruta.joinpath('conf').joinpath('anime_alerta').joinpath('animes.json')) as file:
         animes = json.load(file)
 
     # Animes a consultar, los pasamos todos a minusculas
@@ -88,6 +100,28 @@ if __name__ == '__main__':
                         if encontrado:
                             # Mensaje que contiene la hora en que se encontró el anime
                             toast_message(titulo, episodio, 'jkanime')
+                        encontrado = False
+            elif 'monoschinos' in url:
+                # Buscamos donde se encuentran los animes
+                programacion = soup.find('div', class_='heroarea1')
+                animes_web = programacion.find_all('div', class_='col col-md-6 col-lg-2 col-6')
+
+                # Variable para comprobar si se encontro le anime buscado
+                encontrado = False
+                # Recorremos la lista de animes encontrados
+                for anime_web in animes_web:
+                    # Obtenemos sus datos
+                    titulo, episodio = scrap_monos(anime_web)
+
+                    # Consultamos si se encontraron los animes deseados
+                    for anime in animes:
+                        if anime.lower() in titulo.lower() and anime.lower() not in animes_encontrados:
+                            encontrado = True
+                            mensaje_consola(titulo, episodio, 'monoschinos2', animes_encontrados)
+
+                        if encontrado:
+                            # Mensaje que contiene la hora en que se encontró el anime
+                            toast_message(titulo, episodio, 'monoschinos2')
                         encontrado = False
             else:
                 # Buscamos donde se encuentran los animes
